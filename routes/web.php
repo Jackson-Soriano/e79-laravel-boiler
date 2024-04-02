@@ -22,8 +22,15 @@ Route::get('/home', function () {
 });
 Route::get('/contact-us', function () {
     return view('contact');
-})->middleware('check');
+});
+Route::get('/services-available-for-this-month-april-2024', [ServicesController::class, 'index'])->name('services');
+
+// Route::get('/contact-us', function () {
+//     return view('contact');
+// })->middleware('check');
+
 // Route::get('/services', function () {
 //     return view('services');
 // });
-Route::get('/services-available-for-this-month-april-2024', [ServicesController::class, 'index'])->name('services')->middleware('check');
+
+// Route::get('/services-available-for-this-month-april-2024', [ServicesController::class, 'index'])->name('services')->middleware('check');
