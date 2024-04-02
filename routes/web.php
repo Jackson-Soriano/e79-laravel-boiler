@@ -34,3 +34,13 @@ Route::get('/services-available-for-this-month-april-2024', [ServicesController:
 // });
 
 // Route::get('/services-available-for-this-month-april-2024', [ServicesController::class, 'index'])->name('services')->middleware('check');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
