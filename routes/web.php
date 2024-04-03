@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ServicesController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        // eloquent ORM
+        // $users=User::all();
+        // Querybuilder
+        $users=DB::table('users')->get();
+        return view('dashboard',compact('users'));
     })->name('dashboard');
 });
