@@ -13,7 +13,15 @@ class CategoryController extends Controller
     //calls index page
     public function AllCat(){
         // $categories = Category::all();
-        $categories = Category::latest()->get();
+        // $categories = Category::latest()->get();
+        // pagination with relationship
+        // $categories = Category::latest()->paginate(5);
+        // relationship using querybuilder
+        $categories = DB::table("categories")
+            ->join('users','categories.user_id', 'users.id')
+            ->select('categories.*','users.name')
+            ->latest()->paginate(4);
+        // $categories = DB::table('categories')->latest()->paginate(3);
         // $categories = DB::table('categories')->latest()->get();
         return view("admin.category.index", compact("categories"));
     }
